@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card-body">
+    <body style="background-color: silver">
+    <h4>Book List</h4>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Author</th>
+            <th scope="col">Image</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.description }}</td>
+            <td>{{ book.author }}</td>
+            <th><img src="{{ book.image.url }}" width="55" height="55" alt="{{book.image}}"></th>
+            <td><a type="button" class="btn btn-warning" href="/book-update/{{ book.id }}">Update</a>
+                <a type="button" class="btn btn-danger" href="/book-delete/{{ book.id }}">Delete</a>
+                <a type="button" class="btn btn-info" href="/book-detail/{{book.id}}">Detail</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="/admin/bookapp/book/add/{{ book.id }}">Create</a>
+    </body>
+</div>
+{% endblock %}

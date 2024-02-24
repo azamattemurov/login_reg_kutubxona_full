@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card-body">
+    <body style="background-color: silver">
+    <h4>Book Detail</h4>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                {{ book.title }} : {{book.author}}
+            </th>
+        </tr>
+        <td><img src="{{ book.image.url }}" width="220" height="220" alt="{{book.image}}"></td>
+        </thead>
+        <td>{{ book.description }}</td>
+    </table>
+    <a type="button" class="btn btn-success" href="/">Cansel</a>
+    </body>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card-body">
+    <body style="background-color: silver">
+    <h4>Update Book</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <td>Assalomu Aleykum Update va Create da imageni yuklay olmadim uzur !...</td>
+        <td></td>
+        <a type="button" class="btn btn-danger" href="/">Cancel</a>
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+    </body>
+</div>
+{% endblock %}
