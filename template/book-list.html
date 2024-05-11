@@ -1,16 +1,33 @@
-{% extends "base.html" %}
-{% block content %}
+{% load static %}
+<head>
+    <title>Online kitoblar 📚</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+</head>
+<link rel="stylesheet" href="../../static/css.css">
 <div class="card-body">
-    <body style="background-color: silver">
-    <h4>Book List</h4>
+    <body>
+    <h4 style="text-align:center;">Kitoblar olami 📖</h4>
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Author</th>
-            <th scope="col">Image</th>
-            <th scope="col">Action</th>
+            <th scope="col">Nomi</th>
+            <th scope="col">Malumoti</th>
+            <th scope="col">Yozuvchi</th>
+            <th scope="col">Rasmi</th>
+            <th scope="col">Ish qurollari</th>
         </tr>
         </thead>
         <tbody>
@@ -20,15 +37,19 @@
             <td>{{ book.description }}</td>
             <td>{{ book.author }}</td>
             <th><img src="{{ book.image.url }}" width="55" height="55" alt="{{book.image}}"></th>
-            <td><a type="button" class="btn btn-warning" href="/book-update/{{ book.id }}">Update</a>
-                <a type="button" class="btn btn-danger" href="/book-delete/{{ book.id }}">Delete</a>
-                <a type="button" class="btn btn-info" href="/book-detail/{{book.id}}">Detail</a>
+            <td width="30%"><a type="button" class="btn btn-warning" href="/books/book-update/{{ book.id }}">Yangilash️️♻️</a>
+                <a type="button" class="btn btn-danger" href="/books/book-delete/{{ book.id }}">O'chirish🗑</a>
+                <a type="button" class="btn btn-info" href="/books/book-detail/{{book.id}}">Malumoti📂</a>
             </td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
-    <a type="button" class="btn btn-success" href="/admin/bookapp/book/add/{{ book.id }}">Create</a>
+    <a type="button" class="btn btn-success" href="/books/book-create/{{ book.id }}">Yaratish 📥</a>
+    {% if request.user.is_authenticated %}
+        <a type="button" class="btn btn-outline-danger" href="{% url 'users:logout' %}">Chiqish 🚷</a>
+    {% else %}
+        <a type="button"  class="btn btn-danger" href="/users:login/">Kirish</a>
+    {% endif %}
     </body>
 </div>
-{% endblock %}

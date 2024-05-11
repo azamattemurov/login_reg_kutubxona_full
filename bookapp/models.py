@@ -4,7 +4,6 @@ from django.db import models
 from django.utils.html import mark_safe
 
 
-
 class Book(models.Model):
     objects = None
     title = models.CharField(max_length=100)
